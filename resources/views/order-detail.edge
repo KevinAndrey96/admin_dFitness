@@ -1,0 +1,114 @@
+@layout('layouts.master')
+@section('main') 
+			<!-- Main Content -->
+			<div class="page-wrapper">
+				<div class="container-fluid">
+					<!-- Title -->
+					<div class="row heading-bg">
+						<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+							<h5 class="txt-dark">Pedido</h5>
+						</div>
+						<!-- Breadcrumb -->
+						<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+							<ol class="breadcrumb">
+								<li><a href="/dashboard">Panel</a></li>
+								<li><a href="/orders"><span>Ordenes</span></a></li>
+								<li class="active"><span>Pedido</span></li>
+							</ol>
+						</div>
+						<!-- /Breadcrumb -->
+					</div>
+					<!-- /Title -->
+					<!-- Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default card-view">
+								<div class="panel-heading">
+									<div class="pull-left">
+										<h6 class="panel-title txt-dark">Pedido #{{order.id}}</h6>
+									</div>
+									
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-xs-6">
+												<span class="txt-dark head-font inline-block capitalize-font mb-5">Facturado a:</span>
+												<address class="mb-15">
+												<span class="address-head mb-5"></span>
+													{{client.address}} <br>
+													{{client.city}} <br>
+													<b title="Phone">Telefono: </b>{{client.phone}}
+												</address>
+											</div>
+											
+										</div>
+										
+										<div class="row">
+											<div class="col-xs-6">
+												<address>
+													<span class="txt-dark head-font capitalize-font mb-5">Fecha de Pedido:</span>
+													<br>
+												{{order.created_at}}<br>
+												<br>
+												<h5>Referencia de pago: {{order.gateway}}</h5>
+												</address>
+											</div>
+										</div>
+										
+										<div class="seprator-block"></div>
+										
+										<div class="invoice-bill-table">
+											<div class="table-responsive">
+												<table class="table table-hover">
+													<thead>
+														<tr>
+															<th>Codigo</th>
+															<th>Nombre Producto</th>
+															<th>Cantidad</th>
+															<th>Total</th>
+														</tr>
+													</thead>
+													<tbody>
+														@each(product in products)
+														<tr>
+															<td>{{product.product_id}}</td>
+															<td>{{product.name}}</td>
+															<td>{{product.quantity}}</td>
+															<td><span id="currency-cop">{{product.total}}</span></td>
+														</tr>
+														@endeach
+														
+													</tbody>
+												</table>
+											</div>
+											<div style="display:none" class="button-list pull-right">
+												<button type="submit" class="btn btn-success mr-10">
+													Imprimir
+												</button>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->
+					
+				</div>
+				
+				<!-- Footer -->
+				<footer class="footer container-fluid pl-30 pr-30">
+					<div class="row">
+						<div class="col-sm-12">
+							<p>2020 &copy; Copyright IDDOMINIO</p>
+						</div>
+					</div>
+				</footer>
+				<!-- /Footer -->
+				
+			</div>
+			<!-- /Main Content -->
+		@endsection
